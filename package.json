@@ -2,16 +2,17 @@
   "name": "office",
   "version": "1.0.0",
   "description": "back-end application to view office personel",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "author": "terrence-budnik",
   "license": "ISC",
   "dependencies": {
+    "console.table": "^0.10.0",
     "express": "^4.18.1",
-    "inquirer": "^9.1.2",
+    "inquirer": "^8.2.4",
     "mysql2": "^2.3.3"
   }
 }

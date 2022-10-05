@@ -1,4 +1,7 @@
 -- USE office_db;
+DROP DATABASE IF EXISTS employeeTracker_DB;
+CREATE DATABASE employeeTracker_DB;
+USE employeeTracker_DB;
 
 CREATE TABLE department (
    id INT AUTO_INCREMENT PRIMARY KEY,
