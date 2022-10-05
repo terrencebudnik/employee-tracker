@@ -59,6 +59,11 @@ const menu = () => {
         console.log(answer.start)
         addEmployee()
         break;
+
+      case "Update an employee role":
+        console.log(answer.start)
+        updateEmployee()
+        break;
     }
   });
 }
@@ -113,7 +118,6 @@ const addDepartment = () => {
 }
 
 const addRole = () => {
-  // roleName, roleSalary, roleDepartment
   inquirer.prompt([
     {
       type: "input",
@@ -131,11 +135,9 @@ const addRole = () => {
       message: "What is the department ID for this role?"
     }
   ]).then(function (res) {
-    // update query for role
     const query = "INSERT INTO role SET ?"
     db.query(
       query, {
-      // update for roleName, roleSalary, roleDepartment
       title: res.roleName,
       salary: res.roleSalary,
       department_id: res.roleId
@@ -147,7 +149,6 @@ const addRole = () => {
 }
 
 const addEmployee = () => {
-  // roleName, roleSalary, roleDepartment
   inquirer.prompt([
     {
       type: "input",
@@ -171,11 +172,9 @@ const addEmployee = () => {
     }
 
   ]).then(function (res) {
-    // update query for role
     const query = "INSERT INTO employee SET ?"
     db.query(
       query, {
-      // update for roleName, roleSalary, roleDepartment
       first_name: res.employeeFirstName,
       last_name: res.employeeLastName,
       role_id: res.employeeRoleId,
@@ -187,3 +186,39 @@ const addEmployee = () => {
     menu()
   })
 }
+
+
+const updateEmployee = () => {
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "updatedEmployeeFirstName",
+      message: "What is the first name of the employee you wanted to update?",
+    },
+    {
+      type: "input",
+      name: "updatedEmployeeLastName",
+      message: "What is the last name of the employee you wanted to update?",
+    },
+    {
+      type: "number",
+      name: "newRoleId",
+      message: "What is this employee's new role ID?",
+    },
+  ]).then(function (res) {
+    const query = `UPDATE employee SET ? WHERE ?", ${[res.updatedEmployeeFirsttName, res.updatedEmployeeLastName]}`
+    db.query(
+      query, {
+      first_name: res.updatedEmployeeFirstName,
+      last_name: res.updatedEmployeeLastName,
+      role_id: res.newRoleId
+    },
+    )
+    console.log(`Updated ${res.updatedEmployeeFirstName} to employee`)
+    menu()
+  })
+}
+
+
+
+
